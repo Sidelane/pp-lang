@@ -8,7 +8,7 @@
         - Type: Keyword
         - Content: "dbg"
         - Expression: 1+1 | "String"
-    - Block Token: Token with added Tokens, example: if
+    - Block Token: Token with added Tokens, example: if (Make these expandable somehow: else if etc.)
         - Type: Keyword
         - Content: "if"
         - Expression: 3 > 2
