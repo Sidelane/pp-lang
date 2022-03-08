@@ -11,10 +11,7 @@ class Interpreter {
         while (this.m_index < this.m_tokens.length) {
             if (this.m_tokens[this.m_index].type == Type.Keyword) {
                 if (this.m_tokens[this.m_index].contents == "dbg") {
-                    this.m_index += 2;
-                    if (this.m_tokens[this.m_index].type == Type.DoubleQuotedString || this.m_tokens[this.m_index].type == Type.SingleQuotedString) {
-                        console.log(this.m_tokens[this.m_index].contents);
-                    }
+                    console.log(this.m_tokens[this.m_index].expression);
                     this.m_index++;
                 }
             }

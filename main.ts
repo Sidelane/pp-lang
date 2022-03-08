@@ -15,16 +15,16 @@ if (Deno.args[1] == "--dbg") {
 const contents = await Deno.readTextFile(Deno.args[0]);
 const lexer = new Lexer(contents);
 lexer.lex();
-const int = new Interpreter(lexer.get_tokens());
-
-int.run();
 
 if (debug) {
     lexer.get_tokens().forEach(element => {
         if (element.contents == "") {
             console.log("Token: " + element.to_string());
         } else {
-            console.log("Token: " + element.to_string() + ", Content: " + element.contents)
+            console.log("Token: " + element.to_string() + ", Content: " + element.contents + ", Expression: " + element.expression);
         }
     });
+} else {
+    const int = new Interpreter(lexer.get_tokens());
+    int.run();
 }

@@ -11,8 +11,8 @@ class Lexer {
     public get_tokens() {
         return this.m_tokens;
     }
-    private emit_token(type: Type, content = "") {
-        const tk = new Token(type, content);
+    private emit_token(type: Type, content = "", expression = "") {
+        const tk = new Token(type, content, expression);
         this.m_tokens.push(tk);
     }
     public lex() {
@@ -149,8 +149,16 @@ class Lexer {
 
             // Check for Keywords
             if (ch === "d" && this.peek(1) === "b" && this.peek(2) === "g") {
-                this.emit_token(Type.Keyword, "dbg");
-                this.consume(3);
+
+                // Consume dbg(
+                this.consume(4);
+
+                // get the expression up to the RightParen, and then consume the Semicolon 
+                let contents = this.consume_until(Type.RightParen, 0, true);
+
+                // Append Token with Expression
+                this.emit_token(Type.Keyword, "dbg", contents);
+
                 continue;
             }
 

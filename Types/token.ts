@@ -31,15 +31,18 @@ enum Type {
 interface IToken {
     readonly type: Type;
     readonly contents?: string;
+    readonly expression?: string;
     to_string(): string;
 }
 
 class Token implements IToken {
     public type: Type;
     public contents: string;
-    constructor(type: Type, contents: string = "") {
+    public expression: string;
+    constructor(type: Type, contents = "", expression = "") {
         this.type = type;
         this.contents = contents;
+        this.expression = expression;
     }  
     public to_string(): string {
         switch (this.type) {
